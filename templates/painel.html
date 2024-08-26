@@ -1,0 +1,47 @@
+{% extends "accounts/index.html" %}
+
+
+{% block accounts_container %}
+<h2>Prontuários</h2>
+
+
+<!-- Formulário para Upload de Prontuários -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Upload</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consulta in object_list %}
+        <tr>
+            <td>
+                <form action="{% url 'clientes:painel' consulta.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="my_file">
+                    <input type="submit" value="Enviar">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Lista de Prontuários -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for file_info in prontuarios %}
+            <tr>
+                <td>{{ file_info.name }}</td>
+                <td><a download="{{ file_info.name }}" href="{{ file_info.link }}" target="_blank">Baixar</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

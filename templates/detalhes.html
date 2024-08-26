@@ -1,0 +1,48 @@
+{% extends "accounts/index.html" %}
+
+
+{% block accounts_container %}
+<h2>Upload de Documentos</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th>
+                Psicólogo
+            </th>
+            <th>
+                Dia
+            </th>
+            <th>
+                Horario
+            </th>
+            <th>
+                Upload
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for consulta in object_list %}
+        <tr>
+
+            <td>
+                {{ consulta.agenda.medico }}
+            </td>
+            <td>
+                {{ consulta.agenda.dia|date:"d/m/Y" }}
+            </td>
+            <td>
+                {{ consulta.agenda.get_horario_display }}
+            </td>
+            <td>
+                <form action="{% url 'clientes:detalhes' consulta.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <input type="file" name="my_file">
+                    <input type="submit" value="Enviar">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "accounts/index.html" %}
+{% load custom_filters %}
+
+{% block accounts_container %}
+<h2>Documentos Disponíveis</h2>
+<table class="table table-bordered">
+  <thead>
+      <tr>
+          <th>Nome</th>
+          <th>Link</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for file_info in file_data %}
+          <tr>
+              <td>{{ file_info.name }}</td>
+              <td><a download="{{ file_info.name }}" href="{{ file_info.link.url }}" target="_blank">Baixar</a>
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
