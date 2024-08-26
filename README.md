@@ -1,3 +1,3 @@
-Crie um maquina virtual 
+Create a virtual machine 
 
 venv\Scripts\activate
