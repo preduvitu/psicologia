@@ -1,3 +1,5 @@
-Create a virtual machine 
+Projeto para cadastro de Psicólogos/Pacientes/Consultas.
 
-venv\Scripts\activate
+Simulação de uma clínica de psicologia.
+
+Usando apenas Python e Django.
